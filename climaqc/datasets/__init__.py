@@ -13,18 +13,28 @@ _MAP = {
 def load_demo(nombre: str) -> pd.DataFrame:
     """Carga un dataset demo incluido en el paquete.
 
+    NOTA
+    ----
+    Los archivos demo están separados por punto y coma (;).
+
     Parámetros
     ----------
     nombre : str
-        Uno de: 'precipitacion_diaria', 'temperatura_media_diaria', 'tmin_diaria', 'tmax_diaria'.
+        Uno de: 'precipitacion_diaria', 'temperatura_media_diaria',
+        'tmin_diaria', 'tmax_diaria'.
 
     Retorna
     -------
-    DataFrame con el contenido del CSV.
+    pandas.DataFrame
+        DataFrame con columnas correctamente separadas (fecha, valor).
     """
     nombre = nombre.strip().lower()
     if nombre not in _MAP:
-        raise ValueError(f"Dataset demo desconocido: {nombre}. Opciones: {list(_MAP.keys())}")
+        raise ValueError(
+            f"Dataset demo desconocido: {nombre}. "
+            f"Opciones: {list(_MAP.keys())}"
+        )
+
     fname = _MAP[nombre]
     with resources.files(__package__).joinpath(fname).open("rb") as f:
-        return pd.read_csv(f)
+        return pd.read_csv(f, sep=";")
