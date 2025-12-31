@@ -1,0 +1,11 @@
+{
+  "datasets": [
+    "demo_precipitacion_diaria.csv",
+    "demo_temperatura_media_diaria.csv",
+    "demo_tmin_diaria.csv",
+    "demo_tmax_diaria.csv"
+  ],
+  "date_col_expected": "fecha",
+  "value_col_expected": "valor",
+  "note": "Datasets demo incluidos para replicación."
+}
